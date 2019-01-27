@@ -50,9 +50,15 @@ class PublicacaoController extends Controller
 
     public function edit($id)
     {   
-        $publi = Publicacao::find($id);   
+        if(auth()->user() != null AND (auth()->user()->permissao == 'administrador' OR auth()->user()->id == $id)){
+
+            $publi = Publicacao::find($id);   
         
-        return view('publicacao', ['publi' => $publi]);
+            return view('publicacao', ['publi' => $publi]);
+        }else{
+            return redirect()->route('publicacao.index');
+        }
+        
 
     }
 

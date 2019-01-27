@@ -25,9 +25,14 @@ class UserController extends Controller
      */
     public function index()
     {                
-        $users = User::orderBy('id','DESC')->paginate(2);   
+        if(auth()->user() != null AND (auth()->user()->permissao == 'administrador' )){
+            $users = User::orderBy('id','DESC')->paginate(2);   
         
-        return view('user',compact('users'));
+            return view('user',compact('users'));
+        }else{
+            return redirect()->route('publicacao.index');
+        }
+        
     }  
         
     /**
@@ -61,9 +66,14 @@ class UserController extends Controller
      */
     public function edit($id)
     {   
-        $user = User::find($id);   
+        if(auth()->user() != null AND (auth()->user()->permissao == 'administrador' OR auth()->user()->id == $id)){
+            $user = User::find($id);   
         
-        return view('auth/register', ['user' => $user]);
+            return view('auth/register', ['user' => $user]);
+        }else{
+            return redirect()->route('publicacao.index');
+        }
+        
 
     }
     /**
