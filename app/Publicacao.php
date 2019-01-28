@@ -51,7 +51,7 @@ class Publicacao extends Model
 
                 $nomeImg = "publicacao{$this->id}.{$request->imgPubli->extension()}";
 
-                $upload = $request->imgPubli->storeAs('publicacoes', $nomeImg);
+                $upload = $request->imgPubli->storeAs('/', $nomeImg);
                                 
                 $this->imagem = $upload;
                 

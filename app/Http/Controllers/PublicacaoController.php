@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers;
 use App\Publicacao;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Http\Testing\File;
+use Faker\Factory as Faker;
 
 class PublicacaoController extends Controller
 {
@@ -15,8 +18,8 @@ class PublicacaoController extends Controller
         //$this->middleware('auth');
     }
 
-    public function index(Publicacao $publicacao)    
-    {                              
+    public function index(Publicacao $publicacao)        
+    {                          
         $publicacao = $publicacao->select('publicacaos.*', 'users.name')->join('users','publicacaos.idUser','=','users.id')->orderBy('publicacaos.id','DESC')->paginate(2);                
         return view('homePublicacao',compact('publicacao'));        
     }           

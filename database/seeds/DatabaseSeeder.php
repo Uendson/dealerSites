@@ -38,29 +38,56 @@ class DatabaseSeeder extends Seeder
                 'password'  => $faker->password(),//Hash::make('admin'),
             ]);
         }
+        
+        $indiceGeral = 1;
 
         foreach (range(1,10) as $i) {
+
+            $imgTemp = $faker->image('storage');
+            
+            $nomeImg = "publicacoes{$indiceGeral}.jpg";
+
+            rename($imgTemp, "storage/app/public/{$nomeImg}");             
+
             Publicacao::create([
                 'idUser'        => '1',
                 'titulo'        => $faker->word(),
-                'conteudo'      => $faker->realText(1000, 2),            
+                'conteudo'      => $faker->realText(1000, 2),  
+                'imagem'        => $nomeImg,          
             ]);
+            $indiceGeral++;
         }
 
         foreach (range(1,10) as $i) {
+            $imgTemp = $faker->image('storage');
+            
+            $nomeImg = "publicacoes{$indiceGeral}.jpg";
+
+            rename($imgTemp, "storage/app/public/{$nomeImg}");  
+
             Publicacao::create([
                 'idUser'        => '2',
                 'titulo'        => $faker->word(),
-                'conteudo'      => $faker->realText(1000, 2),            
+                'conteudo'      => $faker->realText(1000, 2), 
+                'imagem'        => $nomeImg,            
             ]);
+            $indiceGeral++;
         }
 
         foreach (range(1,10) as $i) {
+            $imgTemp = $faker->image('storage');
+            
+            $nomeImg = "publicacoes{$indiceGeral}.jpg";
+
+            rename($imgTemp, "storage/app/public/{$nomeImg}");  
+
             Publicacao::create([
                 'idUser'        => '3',
                 'titulo'        => $faker->word(),
-                'conteudo'      => $faker->realText(1000, 2),            
+                'conteudo'      => $faker->realText(1000, 2),  
+                'imagem'        => $nomeImg,           
             ]);
+            $indiceGeral++;
         }
     }
 }

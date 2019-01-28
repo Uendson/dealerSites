@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <!-- Page Content -->
 <div class="container">
@@ -11,27 +9,28 @@
     <div class="col-lg-8">
 
         <!-- Title -->
-        <h1 class="mt-4">{{$publi->titulo}}</h1>
+        <h1 class="mt-4"><?php echo e($publi->titulo); ?></h1>
 
         <!-- Author -->
         <p class="lead">
         by
-        <a href="#">{{$publi->name}}</a>
+        <a href="#"><?php echo e($publi->name); ?></a>
         </p>
 
         <hr>
 
         <!-- Date/Time -->
-        <p>Postado em {{$publi->created_at->format('d/m/y')}}</p>
+        <p>Postado em <?php echo e($publi->created_at->format('d/m/y')); ?></p>
 
         <hr>        
         <!-- Preview Image -->
-        <img class="img-fluid rounded" src="{{url('storage/'.$publi->imagem)}}" alt="">
+        <img class="img-fluid rounded" src="<?php echo e(url('storage/'.$publi->imagem)); ?>" alt="">
 
         <hr>
 
         <!-- Post Content -->
-        {{ nl2br(e($publi->conteudo)) }}
+        <?php echo e(nl2br(e($publi->conteudo))); ?>
+
         
         <hr>
 
@@ -152,4 +151,5 @@
 </div>
 <!-- /.container -->
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
